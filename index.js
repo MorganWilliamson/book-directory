@@ -1,10 +1,10 @@
-const express = require("express");
+const server = require("./api/server.js");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json()); // Replaces bodyParser.json()
-
-app.listen(PORT, () => console.log(`App listening on port ${PORT}. . .`));
+server.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}. . .`);
+})
