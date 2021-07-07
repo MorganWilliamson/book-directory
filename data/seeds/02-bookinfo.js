@@ -1,32 +1,32 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('book_info').del()
+  return knex('book-info').del()
     .then(function () {
       // Inserts seed entries
-      return knex('book_info').insert([
+      return knex('book-info').insert([
         {
-          book_id: 1,
+          id: 1,
           author: "Dr. Seuss"
         },
         {
-          book_id: 2,
+          id: 2,
           author: "Dr. Seuss"
         },
         {
-          book_id: 3,
+          id: 3,
           author: "Eric Carle"
         },
         {
-          book_id: 4,
+          id: 4,
           author: "Dr. Seuss"
         },
         {
-          book_id: 5,
+          id: 5,
           author: "Roald Dahl"
         },
         {
-          book_id: 6,
+          id: 6,
           author: "Marcus Pfister"
         },
       ]);
