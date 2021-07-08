@@ -7,7 +7,7 @@ const router = express.Router();
 
 // READ
 router.get("/", (req, res) => {
-    Books.find()
+    Books.getAll()
         .then(books => {
             res.status(200).json(books);
         })
