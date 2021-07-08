@@ -5,16 +5,16 @@ const Books = require("./books-model.js");
 
 const router = express.Router();
 
-// Check ID first
-const validateBookId = (req, res, next) => {
-    const { id } = req.params;
+// Middleware for checking valid id prior to CRUD operation, needs testing
+// const validateBookId = (req, res, next) => {
+//     const { id } = req.params;
 
-    if (!id) {
-        res.json({ message: "Can't find book with specified id. Would you like to create it?"});
-    } else {
-        next();
-    }
-};
+//     if (!id) {
+//         res.json({ message: "Can't find book with specified id. Would you like to create it?"});
+//     } else {
+//         next();
+//     }
+// };
 
 // READ
 router.get("/", async (req, res) => {
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/:id", validateBookId, async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const book = await Books.getById(id);
@@ -61,6 +61,14 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE
-
+router.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Books.deleteBook(id);
+        res.json({ message: `Book with an id of ${id} has been deleted.`});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
